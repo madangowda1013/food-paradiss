@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Paradise Restaurant</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@800&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="food style.css">
+</head>
+<body>
+
+<!-- ============ Illustrations (drawn in SVG, reused everywhere) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <!-- Ingredients -->
+    <symbol id="i-tomato" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="46" fill="#d93f33"/><circle cx="50" cy="50" r="38" fill="#ef6552"/>
+      <path d="M50 50V16M50 50L80 66M50 50L20 66" stroke="#f7a698" stroke-width="4" stroke-linecap="round"/>
+      <g fill="#ffd98a"><ellipse cx="50" cy="30" rx="4" ry="6"/><ellipse cx="68" cy="60" rx="4" ry="6" transform="rotate(60 68 60)"/><ellipse cx="32" cy="60" rx="4" ry="6" transform="rotate(-60 32 60)"/></g>
+    </symbol>
+    <symbol id="i-leaf" viewBox="0 0 100 100">
+      <path d="M50 4C92 28 92 74 50 96 8 74 8 28 50 4Z" fill="#4fa84a"/>
+      <path d="M50 96V22M50 62L30 44M50 48L70 32" stroke="#2f7a3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-olive" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="#3a3347"/><circle cx="50" cy="50" r="15" fill="#f3e9d0"/>
+      <circle cx="50" cy="50" r="15" fill="none" stroke="#2a2434" stroke-width="3"/>
+      <path d="M20 34a34 34 0 0 1 22-18" stroke="#6b5f80" stroke-width="5" fill="none" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-cheese" viewBox="0 0 100 100">
+      <path d="M6 74L94 34V78H6Z" fill="#f7c948"/><path d="M6 74L94 34" stroke="#e8a920" stroke-width="3"/>
+      <g fill="#e5a62a"><circle cx="62" cy="64" r="6"/><circle cx="36" cy="68" r="4"/><circle cx="78" cy="54" r="3.5"/></g>
+    </symbol>
+    <symbol id="i-onion" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="41" fill="none" stroke="#e6bfe6" stroke-width="10"/>
+      <circle cx="50" cy="50" r="22" fill="none" stroke="#f4e2f4" stroke-width="8"/>
+    </symbol>
+    <symbol id="i-chili" viewBox="0 0 100 100">
+      <path d="M24 24C54 18 88 40 84 80 82 92 70 90 68 76 64 54 48 42 22 40Z" fill="#d9362f"/>
+      <path d="M24 24l-10-10M24 24c-8 2-12 8-10 16" stroke="#3f8f3d" stroke-width="8" stroke-linecap="round" fill="none"/>
+    </symbol>
+    <symbol id="i-mushroom" viewBox="0 0 100 100">
+      <path d="M8 54C8 22 30 8 50 8s42 14 42 46Z" fill="#c8a07a"/>
+      <rect x="36" y="52" width="28" height="38" rx="12" fill="#f3e6d3"/>
+      <g fill="#e2c6a4"><circle cx="34" cy="32" r="5"/><circle cx="62" cy="26" r="4"/><circle cx="72" cy="42" r="4"/></g>
+    </symbol>
+    <symbol id="i-pepperoni" viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="44" fill="#b5262c"/><circle cx="50" cy="50" r="44" fill="none" stroke="#8f1c22" stroke-width="4"/>
+      <g fill="#8f1c22"><circle cx="34" cy="38" r="5"/><circle cx="62" cy="34" r="4"/><circle cx="56" cy="62" r="5"/><circle cx="30" cy="62" r="4"/><circle cx="72" cy="56" r="3"/></g>
+    </symbol>
+    <symbol id="i-lettuce" viewBox="0 0 100 100">
+      <path d="M50 6C65 4 74 14 84 18 96 26 90 40 94 52 98 66 84 76 78 84 68 96 54 90 50 96 40 90 30 96 20 84 12 76 2 66 6 52 8 40 4 26 16 18 26 14 36 4 50 6Z" fill="#8fd35a"/>
+      <path d="M50 94V28M50 62L28 44M50 50L72 34" stroke="#5aa534" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </symbol>
+
+    <!-- Dishes -->
+    <symbol id="d-pizza" viewBox="0 0 400 400">
+      <circle cx="200" cy="200" r="188" fill="#d9964b"/>
+      <circle cx="200" cy="200" r="170" fill="#efb868"/>
+      <circle cx="200" cy="200" r="152" fill="#d8472b"/>
+      <circle cx="200" cy="200" r="144" fill="#f6d778"/>
+      <g fill="#fbe7a0"><ellipse cx="130" cy="120" rx="34" ry="20"/><ellipse cx="280" cy="140" rx="40" ry="22"/><ellipse cx="300" cy="260" rx="30" ry="18"/><ellipse cx="150" cy="290" rx="38" ry="20"/><ellipse cx="220" cy="210" rx="30" ry="18"/></g>
+      <path d="M200 200V14M200 200L361 107M200 200L361 293M200 200V386M200 200L39 293M200 200L39 107" stroke="#b9702f" stroke-opacity=".4" stroke-width="3"/>
+      <g stroke="#8f1c22" stroke-width="3" fill="#b5262c">
+        <circle cx="140" cy="130" r="26"/><circle cx="260" cy="120" r="26"/><circle cx="305" cy="215" r="24"/>
+        <circle cx="235" cy="292" r="26"/><circle cx="128" cy="252" r="24"/><circle cx="205" cy="200" r="24"/>
+      </g>
+      <g fill="#7a1219"><circle cx="134" cy="124" r="4"/><circle cx="268" cy="114" r="4"/><circle cx="300" cy="222" r="4"/><circle cx="240" cy="286" r="4"/><circle cx="122" cy="258" r="4"/><circle cx="210" cy="194" r="4"/></g>
+      <use href="#i-leaf" x="170" y="150" width="44" height="44" transform="rotate(-30 192 172)"/>
+      <use href="#i-leaf" x="250" y="170" width="40" height="40" transform="rotate(40 270 190)"/>
+      <use href="#i-leaf" x="165" y="300" width="40" height="40" transform="rotate(10 185 320)"/>
+      <use href="#i-olive" x="95" y="180" width="30" height="30"/><use href="#i-olive" x="268" y="240" width="30" height="30"/>
+      <use href="#i-olive" x="190" y="92" width="30" height="30"/>
+    </symbol>
+
+    <symbol id="d-burger" viewBox="0 0 400 400">
+      <g transform="translate(0,-18)">
+        <path d="M58 306H342Q342 352 296 352H104Q58 352 58 306Z" fill="#e0a04a"/>
+        <rect x="50" y="266" width="300" height="44" rx="22" fill="#6b3a22"/>
+        <path d="M52 248H348L330 264L300 288L270 264H130L100 288L70 264Z" fill="#f7c948"/>
+        <rect x="62" y="232" width="276" height="20" rx="10" fill="#e2493a"/>
+        <path d="M45 232q10-30 25-10t25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0 25 0V246H45Z" fill="#7fc24b"/>
+        <path d="M52 214C52 124 118 92 200 92S348 124 348 214Z" fill="#e8a94d"/>
+        <path d="M84 170C94 130 130 112 170 108" stroke="#f5cc84" stroke-width="10" fill="none" stroke-linecap="round" opacity=".7"/>
+        <g fill="#fff1cc"><ellipse cx="130" cy="140" rx="9" ry="5" transform="rotate(-20 130 140)"/><ellipse cx="200" cy="120" rx="9" ry="5"/><ellipse cx="270" cy="140" rx="9" ry="5" transform="rotate(20 270 140)"/><ellipse cx="160" cy="175" rx="9" ry="5" transform="rotate(15 160 175)"/><ellipse cx="240" cy="175" rx="9" ry="5" transform="rotate(-15 240 175)"/><ellipse cx="100" cy="190" rx="9" ry="5"/><ellipse cx="305" cy="190" rx="9" ry="5"/></g>
+      </g>
+    </symbol>
+
+    <symbol id="d-pasta" viewBox="0 0 400 400">
+      <circle cx="200" cy="200" r="190" fill="#ffffff" stroke="#e8e2da" stroke-width="4"/>
+      <circle cx="200" cy="200" r="152" fill="#f4f0ea" stroke="#e4ddd2" stroke-width="3"/>
+      <g fill="none" stroke-linecap="round">
+        <g stroke="#e9b84a" stroke-width="14">
+          <circle cx="200" cy="205" r="118" stroke-dasharray="520 80 140 40"/>
+          <circle cx="204" cy="198" r="96" stroke-dasharray="380 60 120 50" transform="rotate(40 200 200)"/>
+          <circle cx="198" cy="204" r="74" stroke-dasharray="300 50 80 30" transform="rotate(110 200 200)"/>
+          <circle cx="202" cy="200" r="52" stroke-dasharray="200 40 60 20" transform="rotate(200 200 200)"/>
+        </g>
+        <g stroke="#f8dd8c" stroke-width="4">
+          <circle cx="200" cy="202" r="118" stroke-dasharray="260 140 90 90" transform="rotate(20 200 200)"/>
+          <circle cx="204" cy="196" r="96" stroke-dasharray="200 120 80 100" transform="rotate(100 200 200)"/>
+          <circle cx="198" cy="202" r="74" stroke-dasharray="160 90 60 70" transform="rotate(170 200 200)"/>
+        </g>
+      </g>
+      <circle cx="200" cy="196" r="52" fill="#d8472b"/>
+      <circle cx="188" cy="186" r="14" fill="#ea6a50"/>
+      <g fill="#fff3b8"><circle cx="176" cy="210" r="3"/><circle cx="214" cy="178" r="3"/><circle cx="224" cy="214" r="3"/><circle cx="196" cy="226" r="3"/><circle cx="170" cy="188" r="3"/></g>
+      <use href="#i-leaf" x="172" y="140" width="56" height="56" transform="rotate(-25 200 168)"/>
+      <use href="#i-leaf" x="206" y="160" width="44" height="44" transform="rotate(55 228 182)"/>
+    </symbol>
+
+    <symbol id="d-sandwich" viewBox="0 0 400 400">
+      <rect x="60" y="250" width="280" height="72" rx="26" fill="#e6b06a" stroke="#c88a3f" stroke-width="6"/>
+      <path d="M48 238q12 14 24 0t24 0 24 0 24 0 24 0 24 0 24 0 24 0 24 0 24 0 24 0 24 0V258H48Z" fill="#f08e9a"/>
+      <rect x="62" y="214" width="276" height="24" rx="12" fill="#e2493a"/>
+      <path d="M50 198H350L332 232L300 214H100L68 232Z" fill="#f7c948"/>
+      <path d="M48 186q11-24 22 0t22 0 22 0 22 0 22 0 22 0 22 0 22 0 22 0 22 0 22 0 22 0 22 0 22 0V206H48Z" fill="#7fc24b"/>
+      <rect x="60" y="110" width="280" height="76" rx="26" fill="#e6b06a" stroke="#c88a3f" stroke-width="6"/>
+      <g stroke="#a86a2a" stroke-width="5" stroke-linecap="round" opacity=".55"><path d="M120 128l20 40M160 128l20 40M200 128l20 40M240 128l20 40M280 128l20 40"/></g>
+      <path d="M300 300V66" stroke="#d9b27a" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="300" cy="68" r="17" fill="#3a3347"/><circle cx="300" cy="68" r="6" fill="#e2493a"/>
+    </symbol>
+  </defs>
+</svg>
+
+    <!-- ===================== HEADER ===================== -->
+    <header class="site-header" id="top">
+        <a class="logo" href="#home" aria-label="Food Paradise, home">Food Paradise</a>
+
+        <nav class="nav" aria-label="Main">
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#menu">Our Menu</a>
+            <a href="#special">Special Offers</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <a class="head-cta" href="#contact">Book a Table</a>
+        <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <main>
+
+    <!-- ===================== HOME / HERO SLIDER ===================== -->
+    <section id="home" class="hero" aria-label="Featured dishes">
+        <h1 class="sr-only">Food Paradise: Delicious Food, Happy Moments!</h1>
+
+        <div class="stage">
+
+            <div class="slide" data-bg="#F4B7A3" data-word="Pizza" data-dish="d-pizza"
+                 data-pieces="tomato,leaf,olive,mushroom,pepperoni,pepperoni,leaf">
+                <div class="cap">
+                    <b>Pizza</b>
+                    <span>Freshly baked pizza with cheese and vegetables.</span>
+                    <em>Price: ₹199</em>
+                </div>
+            </div>
+
+            <div class="slide" data-bg="#F3DA8A" data-word="Burger" data-dish="d-burger"
+                 data-pieces="tomato,lettuce,onion,cheese,olive,tomato,lettuce">
+                <div class="cap">
+                    <b>Burger</b>
+                    <span>Delicious burger with crispy patty and fresh toppings.</span>
+                    <em>Price: ₹149</em>
+                </div>
+            </div>
+
+            <div class="slide" data-bg="#B4D58A" data-word="Pasta" data-dish="d-pasta"
+                 data-pieces="tomato,leaf,chili,cheese,mushroom,leaf,tomato">
+                <div class="cap">
+                    <b>Pasta</b>
+                    <span>Creamy pasta prepared with special Italian sauce.</span>
+                    <em>Price: ₹179</em>
+                </div>
+            </div>
+
+            <div class="slide" data-bg="#C2B0DC" data-word="Sandwich" data-dish="d-sandwich"
+                 data-pieces="lettuce,tomato,cheese,olive,onion,cheese,lettuce">
+                <div class="cap">
+                    <b>Sandwich</b>
+                    <span>Fresh sandwich filled with vegetables and cheese.</span>
+                    <em>Price: ₹99</em>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider UI -->
+        <div class="ui">
+            <div class="tabs rise" style="--d:.33s" role="tablist" aria-label="Dishes">
+                <button class="tab" type="button">Pizza</button>
+                <button class="tab" type="button">Burger</button>
+                <button class="tab" type="button">Pasta</button>
+                <button class="tab" type="button">Sandwich</button>
+                <span class="tab-line"></span>
+            </div>
+
+            <button class="arrow prev rise" style="--d:.49s" type="button" aria-label="Previous dish">
+                <svg viewBox="0 0 28 28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 14H4M12 6l-8 8 8 8"/></svg>
+            </button>
+            <a class="order rise" style="--d:.57s" href="#menu">ORDER NOW</a>
+            <button class="arrow next rise" style="--d:.65s" type="button" aria-label="Next dish">
+                <svg viewBox="0 0 28 28" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h20M16 6l8 8-8 8"/></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- ===================== WELCOME ===================== -->
+    <section class="intro">
+        <div class="wrap narrow">
+            <p class="eyebrow">Delicious Food, Happy Moments!</p>
+            <h2>Welcome to Food Paradise</h2>
+            <p>Experience the taste of delicious food prepared with love and fresh ingredients.</p>
+            <a class="btn" href="#menu"><button type="button">Explore Our Menu</button></a>
+        </div>
+    </section>
+
+    <!-- ===================== ABOUT ===================== -->
+    <section id="about" class="section alt">
+        <div class="wrap about-grid">
+            <div>
+                <p class="eyebrow">About Us</p>
+                <h2>About Our Restaurant</h2>
+                <p>
+                    Food Paradise is a place where taste meets quality.
+                    We serve delicious meals prepared by experienced chefs
+                    using fresh and high-quality ingredients.
+                </p>
+            </div>
+            <ul class="chips">
+                <li style="--c:#F4B7A3"><svg><use href="#i-tomato"/></svg><span><b>Taste meets quality</b>Every plate made with care.</span></li>
+                <li style="--c:#F3DA8A"><svg><use href="#i-onion"/></svg><span><b>Experienced chefs</b>Meals prepared by people who know food.</span></li>
+                <li style="--c:#B4D58A"><svg><use href="#i-leaf"/></svg><span><b>Fresh ingredients</b>Fresh and high-quality, always.</span></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===================== MENU ===================== -->
+    <section id="menu" class="section">
+        <div class="wrap">
+            <p class="eyebrow">Our Menu</p>
+            <h2>Our Popular Menu</h2>
+
+            <div class="cards menu-cards">
+                <div class="card" style="--c:#F4B7A3">
+                    <div class="card-art"><svg class="dish"><use href="#d-pizza"/></svg></div>
+                    <h3>Pizza</h3>
+                    <p>Freshly baked pizza with cheese and vegetables.</p>
+                    <p class="price">Price: ₹199</p>
+                </div>
+
+                <div class="card" style="--c:#F3DA8A">
+                    <div class="card-art"><svg class="dish"><use href="#d-burger"/></svg></div>
+                    <h3>Burger</h3>
+                    <p>Delicious burger with crispy patty and fresh toppings.</p>
+                    <p class="price">Price: ₹149</p>
+                </div>
+
+                <div class="card" style="--c:#B4D58A">
+                    <div class="card-art"><svg class="dish"><use href="#d-pasta"/></svg></div>
+                    <h3>Pasta</h3>
+                    <p>Creamy pasta prepared with special Italian sauce.</p>
+                    <p class="price">Price: ₹179</p>
+                </div>
+
+                <div class="card" style="--c:#C2B0DC">
+                    <div class="card-art"><svg class="dish"><use href="#d-sandwich"/></svg></div>
+                    <h3>Sandwich</h3>
+                    <p>Fresh sandwich filled with vegetables and cheese.</p>
+                    <p class="price">Price: ₹99</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== SPECIAL OFFERS ===================== -->
+    <section id="special" class="section alt">
+        <div class="wrap">
+            <p class="eyebrow">Special Offers</p>
+            <h2>Special Offers</h2>
+
+            <div class="cards offer-cards">
+                <div class="offer" style="--c:#F3DA8A">
+                    <svg class="deco d1"><use href="#d-burger"/></svg>
+                    <svg class="deco d2"><use href="#i-tomato"/></svg>
+                    <h3>Family Combo</h3>
+                    <p>Enjoy delicious food with your family.</p>
+                    <p class="big">20% Discount on Family Orders!</p>
+                </div>
+
+                <div class="offer" style="--c:#B4D58A">
+                    <svg class="deco d1"><use href="#d-pizza"/></svg>
+                    <svg class="deco d2"><use href="#i-leaf"/></svg>
+                    <h3>Weekend Special</h3>
+                    <p>Enjoy our special weekend food offers.</p>
+                    <p class="big">Buy 2 Get 1 Free!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================== CONTACT ===================== -->
+    <section id="contact" class="section">
+        <div class="wrap">
+            <div class="contact-box">
+                <div>
+                    <p class="eyebrow">Contact</p>
+                    <h2>Contact Us</h2>
+                    <p>Address: Mangaluru, Karnataka</p>
+                    <p>Phone: +91 98765 43210</p>
+                    <p>Email: foodparadise@example.com</p>
+                    <button type="button">Book a Table</button>
+                </div>
+                <svg class="contact-art" aria-hidden="true"><use href="#d-pasta"/></svg>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Food Paradise Restaurant. All Rights Reserved.</p>
+    </footer>
+
+<script>
+(() => {
+  const $  = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const NS = 'http://www.w3.org/2000/svg';
+
+  const hero   = $('#home');
+  const slides = $$('.slide');
+  const tabs   = $$('.tab');
+  const line   = $('.tab-line');
+  const header = $('.site-header');
+  const RM     = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const FW = 1440, FH = 900;
+  const LAYERS = [['word', .40], ['shadow', .30], ['dish', .15], ['fruit', .55], ['corner', .75], ['cap', .15]];
+  const FRUIT  = [[383,178,104,0],[960,232,118,0],[295,478,129,-8],[1247,455,123,15],[968,590,110,30]];
+  const CORNER = [[-15,590,255,0],[1282,40,200,0]];
+  const SHADOWS = [[345,650,170,24],[720,676,340,30],[1318,638,160,22],[1045,760,150,22]];
+
+  const el = (tag, cls, css) => { const e = document.createElement(tag); if (cls) e.className = cls; if (css) e.style.cssText = css; return e; };
+  const svgUse = (id) => {
+    const s = document.createElementNS(NS, 'svg'); const u = document.createElementNS(NS, 'use');
+    u.setAttribute('href', '#' + id); s.appendChild(u); return s;
+  };
+
+  /* ---------- Build each slide ---------- */
+  slides.forEach(s => {
+    s.style.background = s.dataset.bg;
+    const cap = $('.cap', s);
+    const frame = el('div', 'frame');
+    s._l = {};
+    LAYERS.forEach(([n]) => { s._l[n] = el('div', 'layer l-' + n); frame.appendChild(s._l[n]); });
+
+    s._word = el('div', 'word'); s._word.textContent = s.dataset.word; s._l.word.appendChild(s._word);
+
+    SHADOWS.forEach(([cx, cy, w, h]) =>
+      s._l.shadow.appendChild(el('div', 'shadow', `left:${cx - w/2}px;top:${cy - h/2}px;width:${w}px;height:${h}px`)));
+
+    const dish = el('div', 'dish-wrap', 'left:500px;top:222px;width:440px;height:440px');
+    dish.appendChild(svgUse(s.dataset.dish)); s._l.dish.appendChild(dish);
+
+    const ids = s.dataset.pieces.split(',');
+    const mk = (id, [x, y, w, r], layer) => {
+      const p = el('div', 'piece', `left:${x}px;top:${y}px;width:${w}px;height:${w}px`);
+      const b = el('div', 'bob', `--r:${r}deg;--d:${(3.2 + Math.random() * 1.8).toFixed(2)}s;--dl:-${(Math.random() * 4).toFixed(2)}s`);
+      b.appendChild(svgUse('i-' + id)); p.appendChild(b); layer.appendChild(p);
+    };
+    FRUIT.forEach((slot, i)  => mk(ids[i],     slot, s._l.fruit));
+    CORNER.forEach((slot, i) => mk(ids[5 + i], slot, s._l.corner));
+
+    s._l.cap.appendChild(cap);
+    s.appendChild(frame); s._frame = frame;
+  });
+
+  /* ---------- Scaling + word fitting ---------- */
+  const ctx = document.createElement('canvas').getContext('2d');
+  const isMobile = () => innerWidth <= 820 || innerHeight > innerWidth;
+  let u = 1;
+
+  function fitWords() {
+    ctx.font = '700 100px Poppins, sans-serif';
+    slides.forEach(s => {
+      const m = ctx.measureText(s.dataset.word);
+      const ink = (m.actualBoundingBoxLeft + m.actualBoundingBoxRight) / 100;
+      let F = 445, ls = .005;
+      if (isMobile()) {
+        const visW = Math.min(FW, innerWidth / u) * .92;
+        if (ink * F > visW) { ls = -.035; F = Math.min(445, visW / ink); }
+      } else if (ink * F > 1330) { ls = -.035; F = Math.min(445, 1400 / ink); }
+      const base = 403.5 + .698 * F / 2;
+      Object.assign(s._word.style, { fontSize: F + 'px', letterSpacing: ls + 'em', top: (base - .85 * F) + 'px' });
+    });
+  }
+
+  function layout() {
+    const vw = hero.clientWidth, vh = hero.clientHeight;
+    const mobile = isMobile();
+    u = mobile ? Math.min(vw / 640, (vh - 200) / 620) : Math.min(vw / FW, vh / FH);
+    const fy = mobile ? 8 : 0;
+    slides.forEach(s => {
+      s._frame.style.transform = `translate(${vw / 2 - 720 * u}px, ${vh / 2 - 450 * u + fy}px) scale(${u})`;
+    });
+    fitWords(); moveLine(cur);
+  }
+
+  /* ---------- Tab underline ---------- */
+  let cur = 0, busy = false;
+  function moveLine(i) {
+    const t = tabs[i]; if (!t) return;
+    line.style.width = t.offsetWidth + 'px';
+    line.style.transform = `translateX(${t.offsetLeft}px)`;
+    tabs.forEach((b, k) => k === i ? b.setAttribute('aria-current', 'true') : b.removeAttribute('aria-current'));
+  }
+
+  /* ---------- Transition ---------- */
+  const T = [0,.031,.134,.206,.278,.34,.412,.485,.546,.583,.62,.69,.79,.85,.93,1];
+  const C = [0,.006,.012,.023,.047,.07,.105,.158,.246,.55,.825,.9,.94,.956,.975,1];
+  const DUR = 970;
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  function cover(t) {
+    for (let i = 0; i < T.length - 1; i++) if (t <= T[i + 1]) {
+      const k = (t - T[i]) / (T[i + 1] - T[i]), s = k * k * (3 - 2 * k);
+      return C[i] + (C[i + 1] - C[i]) * s;
+    }
+    return 1;
+  }
+  const show = (s, z) => { s.style.visibility = 'visible'; s.style.zIndex = z; };
+  const reset = s => { s.style.clipPath = ''; LAYERS.forEach(([n]) => s._l[n].style.transform = ''); };
+
+  function go(to, dir) {
+    if (busy || to === cur) return;
+    dir = dir || (to > cur ? 1 : -1);
+    const A = slides[cur], B = slides[to];
+    moveLine(to);
+    window.dispatchEvent(new CustomEvent('dishChange', { detail: to }));
+
+    if (RM) {
+      A.style.visibility = 'hidden'; A.style.zIndex = 0;
+      show(B, 2); cur = to; return;
+    }
+
+    busy = true;
+    LAYERS.forEach(([n, f]) => B._l[n].style.transform = `translateX(${dir * f * FW}px)`);
+    show(B, 1); A.style.zIndex = 2;
+    const t0 = performance.now();
+
+    (function step(now) {
+      const t = (now - t0) / DUR;
+      const c = cover(Math.min(t, 1));
+      A.style.clipPath = dir > 0 ? `inset(0 ${c * 100}% 0 0)` : `inset(0 0 0 ${c * 100}%)`;
+      const kk = clamp((t - .5) / .42, 0, 1), k = 1 - (1 - kk) * (1 - kk);
+      LAYERS.forEach(([n, f]) => {
+        A._l[n].style.transform = `translateX(${-dir * c * .14 * FW}px)`;
+        B._l[n].style.transform = `translateX(${dir * (1 - k) * f * FW}px)`;
+      });
+      if (t < 1) return requestAnimationFrame(step);
+      A.style.visibility = 'hidden'; A.style.zIndex = 0; reset(A); reset(B);
+      B.style.zIndex = 2; cur = to; busy = false;
+    })(t0);
+  }
+
+  const next = () => go((cur + 1) % slides.length, 1);
+  const prev = () => go((cur - 1 + slides.length) % slides.length, -1);
+
+  /* ---------- Controls ---------- */
+  let lastUser = 0;
+  const touch = () => lastUser = Date.now();
+  tabs.forEach((t, i) => t.addEventListener('click', () => { touch(); go(i, i > cur ? 1 : -1); }));
+  $('.arrow.next').addEventListener('click', () => { touch(); next(); });
+  $('.arrow.prev').addEventListener('click', () => { touch(); prev(); });
+  addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') { touch(); next(); }
+    if (e.key === 'ArrowLeft')  { touch(); prev(); }
+  });
+
+  let px = 0, py = 0, down = false;
+  $('.stage').addEventListener('pointerdown', e => { px = e.clientX; py = e.clientY; down = true; });
+  addEventListener('pointerup', e => {
+    if (!down) return; down = false;
+    const dx = e.clientX - px, dy = e.clientY - py;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { touch(); dx < 0 ? next() : prev(); }
+  });
+
+  let inView = true;
+  new IntersectionObserver(([e]) => inView = e.isIntersecting, { threshold: .3 }).observe(hero);
+  setInterval(() => {
+    if (!document.hidden && inView && Date.now() - lastUser > 6000) next();
+  }, 4200);
+
+  /* ---------- Header ---------- */
+  const onScroll = () => header.classList.toggle('scrolled', scrollY > 40);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  const mb = $('.menu-btn');
+  mb.addEventListener('click', () => {
+    const open = header.classList.toggle('open');
+    mb.setAttribute('aria-expanded', open);
+  });
+  $$('.nav a').forEach(a => a.addEventListener('click', () => { header.classList.remove('open'); mb.setAttribute('aria-expanded', false); }));
+
+  /* ---------- Start ---------- */
+  show(slides[0], 2);
+  addEventListener('resize', layout);
+  layout();
+
+  const start = () => {
+    layout();
+    if (!RM) LAYERS.forEach(([n, f]) =>
+      slides[0]._l[n].animate(
+        [{ transform: `translateX(${f * FW}px)` }, { transform: 'translateX(0)' }],
+        { duration: 900, easing: 'cubic-bezier(.22,.8,.3,1)' }));
+  };
+  (document.fonts ? document.fonts.load('700 100px Poppins').then(() => document.fonts.ready) : Promise.resolve()).then(start, start);
+})();
+</script>
+
+<!-- 3D WebGL Library & Food Paradise 3D Engine -->
+<script src="three.min.js"></script>
+<script src="food3d.js"></script>
+</body>
+</html>
